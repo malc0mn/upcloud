@@ -1,0 +1,50 @@
+{
+    "name"       : "skaisser/upcloud",
+    "type"       : "library",
+    "description": "UpCloud API v1.2 PHP 5.4+ library",
+    "keywords"   : ["UpCloud", "API", "Cloud Hosting", "SSD", "VPS", "MaxIops"],
+    "homepage"   : "https://github.com/skaisser/upcloud",
+    "license"    : "MIT",
+
+    "authors": [
+        {
+            "name"    : "Shirleyson Kaisser",
+            "email"   : "skaisser@gmail.com",
+            "homepage": "http://twitter.com/skaisser",
+            "role"    : "Developer"
+        }
+    ],
+
+    "support": {
+        "issues": "https://github.com/skaisser/upcloud/issues",
+        "source": "https://github.com/skaisser/upcloud"
+    },
+
+    "require": {
+        "php": ">=5.4.0"
+    },
+
+    "require-dev": {
+        "kriswallsmith/buzz" : "~0.10",
+        "guzzle/guzzle"      : "~3.7",
+        "guzzlehttp/guzzle"  : "~5.0|~6.0",
+        "phpspec/phpspec"    : "~2.4",
+        "fabpot/php-cs-fixer": "~1.11"
+    },
+
+    "suggest": {
+        "kriswallsmith/buzz": "To use BuzzAdapter, require kriswallsmith/buzz:~0.10.",
+        "guzzle/guzzle"     : "To use GuzzleAdapter, require guzzle/guzzle:~3.7.",
+        "guzzlehttp/guzzle" : "To use GuzzleHttpAdapter, require guzzlehttp/guzzle:~5.0|~6.0."
+    },
+
+    "autoload": {
+        "psr-4": {
+            "UpCloud\\": "src/"
+        }
+    },
+
+    "config": {
+        "preferred-install": "dist"
+    }
+}
