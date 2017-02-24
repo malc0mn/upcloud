@@ -33,7 +33,7 @@ class GuzzleHttpAdapter implements AdapterInterface
         if (version_compare(ClientInterface::VERSION, '6') === 1) {
             $this->client = $client ?: new Client(['headers' => ['Authorization' => sprintf('Basic %s', $token)]]);
         } else {
-            $this->client = $client ?: new Client();å
+            $this->client = $client ?: new Client();
 
             $this->client->setDefaultOption('headers/Authorization', sprintf('Basic %s', $token));
         }
