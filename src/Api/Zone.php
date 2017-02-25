@@ -1,21 +1,13 @@
 <?php
 
-/*
- * This file is part of the UpCloud library.
- *
- * (c) Shirleyson Kaisser <skaisser@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+/**
+ * https://www.upcloud.com/api/5-zones/
  */
 
 namespace UpCloud\Api;
 
 use UpCloud\Entity\Zone as ZoneEntity;
 
-/**
- * @author Shirleyson Kaisser <skaisser@gmail.com>
- */
 class Zone extends AbstractApi
 {
     /**
@@ -23,14 +15,12 @@ class Zone extends AbstractApi
      */
     public function getAll()
     {
-        $zones = $this->adapter->get(sprintf('%s/zone', $this->endpoint, 200));
+        $result = $this->adapter->get(sprintf('%s/zone', $this->endpoint, 200));
 
-        $zones = json_decode($zones);
-
-        $this->extractMeta($zones);
+        $result = json_decode($result);
 
         return array_map(function ($zone) {
             return new ZoneEntity($zone);
-        }, $zones->zone);
+        }, $result->zones->zone);
     }
 }

@@ -1,19 +1,8 @@
 <?php
 
-/*
- * This file is part of the UpCloud library.
- *
- * (c) Shirleyson Kaisser <skaisser@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace UpCloud\Entity;
+use ReflectionProperty;
 
-/**
- * @author Shirleyson Kaisser <skaisser@gmail.com>
- */
 abstract class AbstractEntity
 {
     /**
@@ -75,5 +64,29 @@ abstract class AbstractEntity
         };
 
         return lcfirst(preg_replace_callback('/(^|_)([a-z])/', $callback, $str));
+    }
+
+    /**
+     * @return array
+     */
+    public function toApiPostData()
+    {
+        $array = [];
+
+        $reflect = new \ReflectionClass($this);
+        $properties = $reflect->getProperties(ReflectionProperty::IS_PUBLIC);
+        foreach ($properties as $property) {
+            $value = $property->getValue($this);
+
+            // Do not post null values to the API.
+            if ($value !== null) {
+                $name = $property->getName();
+                // Convert camelCase to snake_case.
+                $snakeName = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $name));
+                $array[$snakeName] = $value;
+            }
+        }
+
+        return $array;
     }
 }

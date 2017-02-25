@@ -1,32 +1,28 @@
 <?php
 
-/*
- * This file is part of the UpCloud library.
- *
- * (c) Shirleyson Kaisser <skaisser@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+/**
+ * https://www.upcloud.com/api/4-pricing/
  */
 
 namespace UpCloud\Api;
 
 use UpCloud\Entity\Pricing as PricingEntity;
 
-/**
- * @author Shirleyson Kaisser <skaisser@gmail.com>
- */
 class Pricing extends AbstractApi
 {
     /**
-     * @return PricingEntity
+     * https://www.upcloud.com/api/4-pricing/#list-prices
+     *
+     * @return PricingEntity[]
      */
     public function listPrices()
     {
-        $pricing = $this->adapter->get(sprintf('%s/price', $this->endpoint));
+        $result = $this->adapter->get(sprintf('%s/price', $this->endpoint));
 
-        $pricing = json_decode($pricing);
+        $result = json_decode($result);
 
-        return new PricingEntity($pricing->pricing);
+        return array_map(function ($price) {
+            return new PricingEntity($price);
+        }, $result->prices->zone);
     }
 }

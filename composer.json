@@ -1,9 +1,9 @@
 {
-    "name"       : "skaisser/upcloud",
+    "name"       : "malc0mn/upcloud",
     "type"       : "library",
     "description": "UpCloud API v1.2 PHP 5.4+ library",
     "keywords"   : ["UpCloud", "API", "Cloud Hosting", "SSD", "VPS", "MaxIops"],
-    "homepage"   : "https://github.com/skaisser/upcloud",
+    "homepage"   : "https://github.com/malc0mn/upcloud",
     "license"    : "MIT",
 
     "authors": [
@@ -12,12 +12,17 @@
             "email"   : "skaisser@gmail.com",
             "homepage": "http://twitter.com/skaisser",
             "role"    : "Developer"
+        },
+        {
+            "name"    : "malc0mn",
+            "homepage": "https://github.com/malc0mn",
+            "role"    : "Developer"
         }
     ],
 
     "support": {
-        "issues": "https://github.com/skaisser/upcloud/issues",
-        "source": "https://github.com/skaisser/upcloud"
+        "issues": "https://github.com/malc0mn/upcloud/issues",
+        "source": "https://github.com/malc0mn/upcloud"
     },
 
     "require": {

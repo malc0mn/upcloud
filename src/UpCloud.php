@@ -1,32 +1,19 @@
 <?php
 
-/*
- * This file is part of the UpCloud library.
- *
- * (c) Shirleyson Kaisser <skaisser@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace UpCloud;
 
 use UpCloud\Adapter\AdapterInterface;
 use UpCloud\Api\Account;
-use UpCloud\Api\Action;
-use UpCloud\Api\Domain;
-use UpCloud\Api\DomainRecord;
-use UpCloud\Api\Droplet;
-use UpCloud\Api\FloatingIp;
-use UpCloud\Api\Image;
-use UpCloud\Api\Key;
-use UpCloud\Api\RateLimit;
-use UpCloud\Api\Region;
-use UpCloud\Api\Size;
+use UpCloud\Api\Firewall;
+use UpCloud\Api\IpAddress;
+use UpCloud\Api\Plan;
+use UpCloud\Api\Pricing;
+use UpCloud\Api\Server;
+use UpCloud\Api\Storage;
+use UpCloud\Api\Tag;
+use UpCloud\Api\TimeZone;
+use UpCloud\Api\Zone;
 
-/**
- * @author Shirleyson Kaisser <skaisser@gmail.com>
- */
 class UpCloud
 {
     /**
@@ -51,82 +38,74 @@ class UpCloud
     }
 
     /**
-     * @return Action
+     * @return Pricing
      */
-    public function action()
+    public function pricing()
     {
-        return new Action($this->adapter);
+        return new Pricing($this->adapter);
     }
 
     /**
-     * @return Domain
+     * @return Zone
      */
-    public function domain()
+    public function zone()
     {
-        return new Domain($this->adapter);
+        return new Zone($this->adapter);
     }
 
     /**
-     * @return DomainRecord
+     * @return TimeZone
      */
-    public function domainRecord()
+    public function timeZone()
     {
-        return new DomainRecord($this->adapter);
+        return new TimeZone($this->adapter);
     }
 
     /**
-     * @return Droplet
+     * @return Plan
      */
-    public function droplet()
+    public function plan()
     {
-        return new Droplet($this->adapter);
+        return new Plan($this->adapter);
     }
 
     /**
-     * @return FloatingIp
+     * @return Server
      */
-    public function floatingIp()
+    public function server()
     {
-        return new FloatingIp($this->adapter);
+        return new Server($this->adapter);
     }
 
     /**
-     * @return Image
+     * @return Storage
      */
-    public function image()
+    public function storage()
     {
-        return new Image($this->adapter);
+        return new Storage($this->adapter);
     }
 
     /**
-     * @return Key
+     * @return IpAddress
      */
-    public function key()
+    public function ipAddress()
     {
-        return new Key($this->adapter);
+        return new IpAddress($this->adapter);
     }
 
     /**
-     * @return RateLimit
+     * @return Firewall
      */
-    public function rateLimit()
+    public function firewall()
     {
-        return new RateLimit($this->adapter);
+        return new Firewall($this->adapter);
     }
 
     /**
-     * @return Region
+     * @return Tag
      */
-    public function region()
+    public function tag()
     {
-        return new Region($this->adapter);
-    }
-
-    /**
-     * @return Size
-     */
-    public function size()
-    {
-        return new Size($this->adapter);
+        return new Tag($this->adapter);
     }
 }

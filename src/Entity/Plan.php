@@ -1,31 +1,19 @@
 <?php
 
-/*
- * This file is part of the UpCloud library.
- *
- * (c) Shirleyson Kaisser <skaisser@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace UpCloud\Entity;
 
-/**
- * @author Shirleyson Kaisser <skaisser@gmail.com>
- */
 final class Plan extends AbstractEntity
 {
    /**
      * @var int
      */
-    public $core_number;
+    public $coreNumber;
 
 
     /**
      * @var int
      */
-    public $memory_amount;
+    public $memoryAmount;
 
 
     /**
@@ -37,19 +25,17 @@ final class Plan extends AbstractEntity
     /**
      * @var int
      */
-    public $public_traffic_out;
+    public $publicTrafficOut;
 
 
     /**
      * @var int
      */
-    public $storage_size;
+    public $storageSize;
 
 
     /**
      * @var string
      */
-    public $storage_tier;
-
-    
+    public $storageTier;
 }

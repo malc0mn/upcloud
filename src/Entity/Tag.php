@@ -2,7 +2,7 @@
 
 namespace UpCloud\Entity;
 
-final class Pricing extends AbstractEntity
+final class Tag extends AbstractEntity
 {
     /**
      * @var string
@@ -12,5 +12,10 @@ final class Pricing extends AbstractEntity
     /**
      * @var string
      */
-    public $firewall;
+    public $description;
+
+    /**
+     * @var array
+     */
+    public $servers;
 }

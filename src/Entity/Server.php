@@ -1,26 +1,18 @@
 <?php
 
-/*
- * This file is part of the UpCloud library.
- *
- * (c) Shirleyson Kaisser <skaisser@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace UpCloud\Entity;
 
-/**
- * @author Shirleyson Kaisser <skaisser@gmail.com>
- */
 final class Server extends AbstractEntity
 {
     /**
      * @var string
      */
-    public $boot_order;
+    public $bootOrder;
 
+    /**
+     * @var int
+     */
+    public $coreNumber;
 
     /**
      * @var string
@@ -33,65 +25,14 @@ final class Server extends AbstractEntity
     public $host;
 
     /**
-     * @var IpAddress[]
-     */
-    public $ip_addresses;
-
-    /**
-     * @var string
-     */
-    public $nic_model;
-
-    /**
-     * @var Storage[]
-     */
-    public $storage_devices;
-
-    /**
-     * @var string
-     */
-    public $timezone;
-
-    /**
-     * @var string
-     */
-    public $video_model;
-
-    /**
-     * @var string
-     */
-    public $vnc;
-
-    /**
-     * @var string
-     */
-    public $vnc_host;
-
-    /**
-     * @var string
-     */
-    public $vnc_password;
-
-    /**
-     * @var string
-     */
-    public $vnc_port;
-
-    /**
-     * @var string
-     */
-    public $zone;
-
-   
-    /**
-     * @var string
-     */
-    public $core_number;
-
-    /**
      * @var string
      */
     public $hostname;
+
+    /**
+     * @var IpAddress[]
+     */
+    public $ipAddresses;
 
     /**
      * @var int
@@ -99,9 +40,9 @@ final class Server extends AbstractEntity
     public $licence;
 
     /**
-     * @var string
+     * @var int
      */
-    public $memory_amount;
+    public $memoryAmount;
 
     /**
      * @var string
@@ -114,9 +55,19 @@ final class Server extends AbstractEntity
     public $state;
 
     /**
-     * @var Tags[]
+     * @var StorageDevice
+     */
+    public $storageDevices;
+
+    /**
+     * @var Tag[]
      */
     public $tags;
+
+    /**
+     * @var TimeZone
+     */
+    public $timezone;
 
     /**
      * @var string
@@ -127,6 +78,31 @@ final class Server extends AbstractEntity
      * @var string
      */
     public $uuid;
+
+    /**
+     * @var string
+     */
+    public $videoModel;
+
+    /**
+     * @var string
+     */
+    public $vnc;
+
+    /**
+     * @var string
+     */
+    public $vncHost;
+
+    /**
+     * @var string
+     */
+    public $vncPassword;
+
+    /**
+     * @var string
+     */
+    public $vncPort;
 
     /**
      * @var Zone
@@ -141,13 +117,54 @@ final class Server extends AbstractEntity
         foreach ($parameters as $property => $value) {
             switch ($property) {
                 case 'tags':
-                    if (is_object($value)) {
-                        $this->tags = new Tag($value);
-                    }
+                    $this->tags = array_map(function ($name) {
+                        $tag = new Tag();
+                        $tag->name = $name;
+                        return $tag;
+                    }, $value->tags);
+
+                    // Prevent from double processing.
                     unset($parameters[$property]);
+
                     break;
 
-               
+                case 'ip_addresses':
+                    $this->ipAddresses = array_map(function ($ipAddress) {
+                        return new Tag($ipAddress);
+                    }, $value->ip_address);
+
+                    // Prevent from double processing.
+                    unset($parameters[$property]);
+
+                    break;
+
+                case 'storage_devices':
+                    $this->ipAddresses = array_map(function ($ipAddress) {
+                        return new Tag($ipAddress);
+                    }, $value->storage_device);
+
+                    // Prevent from double processing.
+                    unset($parameters[$property]);
+
+                    break;
+
+                case 'timezone':
+                    $this->timezone = new TimeZone();
+                    $this->timezone->name = $value;
+
+                    // Prevent from double processing.
+                    unset($parameters[$property]);
+
+                    break;
+
+                case 'zone':
+                    $this->zone = new Zone();
+                    $this->zone->id = $value;
+
+                    // Prevent from double processing.
+                    unset($parameters[$property]);
+
+                    break;
             }
         }
 

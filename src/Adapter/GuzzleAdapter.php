@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the UpCloud library.
- *
- * (c) Shirleyson Kaisser <skaisser@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace UpCloud\Adapter;
 
 use UpCloud\Exception\HttpException;
@@ -17,9 +8,6 @@ use Guzzle\Http\ClientInterface;
 use Guzzle\Http\Exception\RequestException;
 use Guzzle\Http\Message\Response;
 
-/**
- * @author Shirleyson Kaisser <skaisser@gmail.com>
- */
 class GuzzleAdapter implements AdapterInterface
 {
     /**
