@@ -47,6 +47,11 @@ final class Server extends AbstractEntity
     /**
      * @var string
      */
+    public $nicModel;
+
+    /**
+     * @var Plan
+     */
     public $plan;
 
     /**
@@ -55,7 +60,7 @@ final class Server extends AbstractEntity
     public $state;
 
     /**
-     * @var StorageDevice
+     * @var Storage[]
      */
     public $storageDevices;
 
@@ -116,6 +121,15 @@ final class Server extends AbstractEntity
     {
         foreach ($parameters as $property => $value) {
             switch ($property) {
+                case 'plan':
+                    $this->plan = new Plan();
+                    $this->plan->name = $value;
+
+                    // Prevent from double processing.
+                    unset($parameters[$property]);
+
+                    break;
+
                 case 'tags':
                     $this->tags = array_map(function ($name) {
                         $tag = new Tag();
