@@ -121,7 +121,7 @@ final class Server extends AbstractEntity
                         $tag = new Tag();
                         $tag->name = $name;
                         return $tag;
-                    }, $value->tags);
+                    }, $value->tag);
 
                     // Prevent from double processing.
                     unset($parameters[$property]);
@@ -130,7 +130,7 @@ final class Server extends AbstractEntity
 
                 case 'ip_addresses':
                     $this->ipAddresses = array_map(function ($ipAddress) {
-                        return new Tag($ipAddress);
+                        return new IpAddress($ipAddress);
                     }, $value->ip_address);
 
                     // Prevent from double processing.
@@ -139,8 +139,8 @@ final class Server extends AbstractEntity
                     break;
 
                 case 'storage_devices':
-                    $this->ipAddresses = array_map(function ($ipAddress) {
-                        return new Tag($ipAddress);
+                    $this->storageDevices = array_map(function ($ipAddress) {
+                        return new Storage($ipAddress);
                     }, $value->storage_device);
 
                     // Prevent from double processing.
