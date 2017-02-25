@@ -1,7 +1,7 @@
 {
     "name"       : "malc0mn/upcloud",
     "type"       : "library",
-    "description": "UpCloud API v1.2 PHP 5.4+ library",
+    "description": "UpCloud API v1.2.x PHP 5.4+ library",
     "keywords"   : ["UpCloud", "API", "Cloud Hosting", "SSD", "VPS", "MaxIops"],
     "homepage"   : "https://github.com/malc0mn/upcloud",
     "license"    : "MIT",
