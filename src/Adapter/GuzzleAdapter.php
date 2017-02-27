@@ -21,14 +21,17 @@ class GuzzleAdapter implements AdapterInterface
     protected $response;
 
     /**
-     * @param string               $token
+     * @param string               $user
+     * @param string               $password
      * @param ClientInterface|null $client
      */
-    public function __construct($token, ClientInterface $client = null)
+    public function __construct($user, $password, ClientInterface $client = null)
     {
+        $token = "$user:$password";
+
         $this->client = $client ?: new Client();
 
-        $this->client->setDefaultOption('headers/Authorization', sprintf('Bearer %s', $token));
+        $this->client->setDefaultOption('headers/Authorization', sprintf('Basic %s', base64_encode($token)));
     }
 
     /**

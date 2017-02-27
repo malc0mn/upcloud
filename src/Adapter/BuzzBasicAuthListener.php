@@ -6,7 +6,7 @@ use Buzz\Listener\ListenerInterface;
 use Buzz\Message\MessageInterface;
 use Buzz\Message\RequestInterface;
 
-class BuzzOAuthListener implements ListenerInterface
+class BuzzBasicAuthListener implements ListenerInterface
 {
     /**
      * @var string
@@ -14,11 +14,12 @@ class BuzzOAuthListener implements ListenerInterface
     protected $token;
 
     /**
-     * @param string $token
+     * @param string $user
+     * @param string $password
      */
-    public function __construct($token)
+    public function __construct($user, $password)
     {
-        $this->token = $token;
+        $this->token = "$user:$password";
     }
 
     /**
@@ -26,7 +27,7 @@ class BuzzOAuthListener implements ListenerInterface
      */
     public function preSend(RequestInterface $request)
     {
-        $request->addHeader(sprintf('Authorization: Bearer %s', $this->token));
+        $request->addHeader(sprintf('Authorization: Basic %s', base64_encode($this->token)));
     }
 
     /**

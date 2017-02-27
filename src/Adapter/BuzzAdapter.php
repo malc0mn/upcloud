@@ -17,14 +17,15 @@ class BuzzAdapter implements AdapterInterface
     protected $browser;
 
     /**
-     * @param string                 $token
+     * @param string                 $user
+     * @param string                 $password
      * @param Browser|null           $browser
      * @param ListenerInterface|null $listener
      */
-    public function __construct($token, Browser $browser = null, ListenerInterface $listener = null)
+    public function __construct($user, $password, Browser $browser = null, ListenerInterface $listener = null)
     {
         $this->browser = $browser ?: new Browser(function_exists('curl_exec') ? new Curl() : new FileGetContents());
-        $this->browser->addListener($listener ?: new BuzzOAuthListener($token));
+        $this->browser->addListener($listener ?: new BuzzBasicAuthListener($user, $password));
     }
 
     /**
