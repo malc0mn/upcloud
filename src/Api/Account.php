@@ -17,10 +17,10 @@ class Account extends AbstractApi
      */
     public function getAccountInformation()
     {
-        $account = $this->adapter->get(sprintf('%s/account', $this->endpoint));
+        $result = $this->adapter->get(sprintf('%s/account', $this->endpoint));
 
-        $account = json_decode($account);
+        $result = json_decode($result);
 
-        return new AccountEntity($account->account);
+        return new AccountEntity($result->account);
     }
 }
