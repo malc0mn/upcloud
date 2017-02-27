@@ -7,7 +7,7 @@ UpCloud.com PHP 5.4+ API client
 [![License](https://poser.pugx.org/malc0mn/upcloud/license)](https://packagist.org/packages/malc0mn/upcloud)
 
 
-Work in progress, will be fully functional soon!
+Work in progress, but it is functional! Only tested with the GuzzleHttpAdapter for now.
 
 
 ## UpCloud API documentation
