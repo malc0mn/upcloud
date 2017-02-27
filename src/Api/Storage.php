@@ -54,6 +54,22 @@ class Storage extends AbstractApi
     }
 
     /**
+     * https://www.upcloud.com/api/8-servers/#creating-from-a-template
+     *
+     * @return StorageEntity[]
+     */
+    public function getTemplates()
+    {
+        $result = $this->adapter->get(sprintf('%s/storage/template', $this->endpoint));
+
+        $result = json_decode($result);
+
+        return array_map(function ($storage) {
+            return new StorageEntity($storage);
+        }, $result->storages->storage);
+    }
+
+    /**
      * https://www.upcloud.com/api/9-storages/#create-storage
      *
      * @param string $zone The zone in which the storage will be created, e.g.

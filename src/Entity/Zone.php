@@ -13,6 +13,4 @@ final class Zone extends AbstractEntity
      * @var string
      */
     public $description;
-
-
 }
