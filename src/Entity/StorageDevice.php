@@ -28,4 +28,19 @@ final class StorageDevice extends AbstractEntity
      * @var string A valid storage UUID (required if type is 'disk')
      */
     public $storage;
+
+    /**
+     * @var string User given title
+     */
+    public $storageTitle;
+
+    /**
+     * @var string Whether or not it was part of the selected plan.
+     */
+    public $partOfPlan;
+
+    /**
+     * @var string The size in GB
+     */
+    public $storageSize;
 }

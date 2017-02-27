@@ -153,8 +153,8 @@ final class Server extends AbstractEntity
                     break;
 
                 case 'storage_devices':
-                    $this->storageDevices = array_map(function ($ipAddress) {
-                        return new Storage($ipAddress);
+                    $this->storageDevices = array_map(function ($storage) {
+                        return new StorageDevice($storage);
                     }, $value->storage_device);
 
                     // Prevent from double processing.
