@@ -70,6 +70,7 @@ class Server extends AbstractApi
      * @param string $zone
      * @param string $title
      * @param string $hostname
+     * @param string $plan
      * @param StorageDevice[] $storageDevices
      * @param IpAddress[] $ipAddresses
      * @param array $additionalOptions
@@ -81,24 +82,29 @@ class Server extends AbstractApi
         $title,
         $hostname,
         array $storageDevices,
+        $plan = null,
         array $ipAddresses = [],
         array $additionalOptions = []
     ) {
+        // TODO: add some validation, see Attributes tables on
+        // https://www.upcloud.com/api/8-servers/#create-server
+
         $data = [
             'zone' => $zone,
             'title' => $title,
             'hostname' => $hostname,
         ];
 
-        // TODO: add some validation, see Attributes tables on
-        // https://www.upcloud.com/api/8-servers/#create-server
+        if ($plan !== null) {
+            $data['plan'] = $plan;
+        }
 
         foreach ($storageDevices as $storageDevice) {
             $data['storage_devices']['storage_device'][] = $storageDevice->toApiPostData();
         }
 
         foreach ($ipAddresses as $ipAddress) {
-            $data['storage_devices']['storage_device'][] = $ipAddress->toApiPostData();
+            $data['ip_addresses']['ip_address'][] = $ipAddress->toApiPostData();
         }
 
         if (isset($additionalOptions['plan'])) {
@@ -150,12 +156,20 @@ class Server extends AbstractApi
      *
      * @return ServerEntity
      */
-    public function stop($uuid, $type = 'soft', $timeout = 60)
-    {
+    public function stop(
+        $uuid,
+        $type = 'soft',
+        $timeout = 60
+    ) {
         $params['stop_server'] = [
             'stop_type' => $type,
-            'timeout' => $timeout,
         ];
+
+        // Mandatory when type is 'soft'.
+        if ($timeout) {
+            $params['stop_server']['timeout'] = $timeout;
+        }
+
         return $this->executeAction($uuid, 'stop', $params);
     }
 
@@ -175,13 +189,17 @@ class Server extends AbstractApi
         $uuid,
         $type = 'soft',
         $timeout = 60,
-        $timeoutAction = 'destroy'
+        $timeoutAction = 'ignore'
     ) {
         $params['restart_server'] = [
             'stop_type' => $type,
-            'timeout' => $timeout,
             'timeout_action' => $timeoutAction,
         ];
+
+        if ($timeout) {
+            $params['restart_server']['timeout'] = $timeout;
+        }
+
         return $this->executeAction($uuid, 'restart', $params);
     }
 

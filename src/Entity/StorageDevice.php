@@ -9,6 +9,13 @@ namespace UpCloud\Entity;
 final class StorageDevice extends AbstractEntity
 {
     /**
+     * The method used to create or attach the specified storage.
+     *
+     * @var string create|clone|attach
+     */
+    public $action;
+
+    /**
      * The type of the attached storage.
      *
      * @var string disk|cdrom
