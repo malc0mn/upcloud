@@ -50,4 +50,9 @@ final class StorageDevice extends AbstractEntity
      * @var string The size in GB
      */
     public $storageSize;
+
+    /**
+     * @var string The size in GB
+     */
+    public $size;
 }
