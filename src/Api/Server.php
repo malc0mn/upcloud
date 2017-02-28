@@ -124,7 +124,7 @@ class Server extends AbstractApi
             $data['user_data'] = $additionalOptions['userData'];
         }
 
-        $result = $this->adapter->post(sprintf('%s/server', $this->endpoint), $data);
+        $result = $this->adapter->post(sprintf('%s/server', $this->endpoint), ['server' => $data]);
 
         $result = json_decode($result);
 
