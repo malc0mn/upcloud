@@ -42,6 +42,11 @@ final class StorageDevice extends AbstractEntity
     public $storageTitle;
 
     /**
+     * @var string User given title
+     */
+    public $title;
+
+    /**
      * @var string Whether or not it was part of the selected plan.
      */
     public $partOfPlan;
@@ -55,4 +60,9 @@ final class StorageDevice extends AbstractEntity
      * @var string The size in GB
      */
     public $size;
+
+    /**
+     * @var string hdd|maxiops
+     */
+    public $tier;
 }
