@@ -330,14 +330,14 @@ class Storage extends AbstractApi
     }
 
     /**
-     * Helper function to execute an action on a server.
+     * Helper function to execute an action on a storage device.
      *
      * @param string $uuid
      * @param string $action
      *
      * @throws HttpException
      *
-     * @return ServerEntity
+     * @return StorageEntity
      */
     private function executeAction($uuid, $action, array $options = [])
     {
