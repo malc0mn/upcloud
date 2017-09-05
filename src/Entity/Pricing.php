@@ -2,8 +2,7 @@
 
 namespace UpCloud\Entity;
 
-final class Pricing extends AbstractEntity
-{
+final class Pricing extends AbstractEntity {
     /**
      * @var string
      */
@@ -17,100 +16,101 @@ final class Pricing extends AbstractEntity
     /**
      * @var PricingItem
      */
-    public $io_request_backup;
+    public $ioRequestBackup;
 
     /**
      * @var PricingItem
      */
-    public $io_request_maxiops;
+    public $ioRequestMaxiops;
 
     /**
      * @var PricingItem
      */
-    public $ipv4_address;
+    public $ipv4Address;
 
     /**
      * @var PricingItem
      */
-    public $ipv6_address;
+    public $ipv6Address;
 
     /**
      * @var PricingItem
      */
-    public $public_ipv4_bandwidth_in;
+    public $publicIpv4BandwidthIn;
 
     /**
      * @var PricingItem
      */
-    public $public_ipv4_bandwidth_out;
+    public $publicIpv4BandwidthOut;
 
     /**
      * @var PricingItem
      */
-    public $public_ipv6_bandwidth_in;
+    public $publicIpv6BandwidthIn;
 
     /**
      * @var PricingItem
      */
-    public $public_ipv6_bandwidth_out;
+    public $publicIpv6BandwidthOut;
 
     /**
      * @var PricingItem
      */
-    public $server_core;
+    public $serverCore;
 
     /**
      * @var PricingItem
      */
-    public $server_memory;
+    public $serverMemory;
 
     /**
      * @var array PricingItem
      */
-    public $server_plans;
+    public $serverPlans;
 
     /**
      * @var PricingItem
      */
-    public $storage_backup;
+    public $storageBackup;
 
     /**
      * @var PricingItem
      */
-    public $storage_maxiops;
+    public $storageMaxiops;
 
     /**
      * @var PricingItem
      */
-    public $storage_template;
+    public $storageTemplate;
 
     /**
      * @param array $parameters
      */
     public function build(array $parameters) {
 
-        $server_plan_prefix = 'server_plan_';
-        $server_plan_len = strlen($server_plan_prefix);
+        $serverPlanPrefix = 'server_plan_';
+        $serverPlanLen = strlen($serverPlanPrefix);
 
         foreach ($parameters as $property => $value) {
-            if($property === 'name'){
+            if ($property === 'name') {
                 continue;
             }
+            // Prevent from double processing.
+            unset($parameters[$property]);
 
             $pricingItem = new PricingItem($value);
             $pricingItem->name = $property;
-            $pricingItem->m = $pricingItem->getPricePerMonth();
 
-            if( substr($property, 0, $server_plan_len) === $server_plan_prefix){
-                $this->server_plans[str_replace ( $server_plan_prefix , '', $property)] = $pricingItem;
-            } else {
-                $this->$property = $pricingItem;
+            if (substr($property, 0, $serverPlanLen) === $serverPlanPrefix) {
+                $this->serverPlans[str_replace($serverPlanPrefix, '', $property)] = $pricingItem;
+                continue;
             }
-
-            // Prevent from double processing.
-            unset($parameters[$property]);
+            $ccProperty = static::convertToCamelCase($property);
+            $this->$ccProperty = $pricingItem;
         }
 
         parent::build($parameters);
     }
+
+    //public function
 }
