@@ -30,4 +30,20 @@ abstract class AbstractApi
         $this->adapter = $adapter;
         $this->endpoint = $endpoint ?: static::ENDPOINT;
     }
+
+    /**
+     * Return new assoc array that uses $propertyForKey as key.
+     *
+     * @param array  $array
+     * @param string $propertyForKey
+     * @return array
+     */
+    protected function array_map_keys(array $array, $propertyForKey) {
+        $tempArray = [];
+        foreach($array as $value){
+            $tempArray[$value->$propertyForKey] = $value;
+        }
+        return $tempArray;
+    }
+
 }
