@@ -38,7 +38,8 @@ abstract class AbstractApi
      * @param string $propertyForKey
      * @return array
      */
-    protected function array_map_keys(array $array, $propertyForKey) {
+    protected function arrayMapKeys(array $array, $propertyForKey)
+    {
         $tempArray = [];
         foreach($array as $value){
             $tempArray[$value->$propertyForKey] = $value;

@@ -86,8 +86,8 @@ final class Pricing extends AbstractEntity {
     /**
      * @param array $parameters
      */
-    public function build(array $parameters) {
-
+    public function build(array $parameters)
+    {
         $serverPlanPrefix = 'server_plan_';
         $serverPlanLen = strlen($serverPlanPrefix);
 
@@ -111,6 +111,4 @@ final class Pricing extends AbstractEntity {
 
         parent::build($parameters);
     }
-
-    //public function
 }
