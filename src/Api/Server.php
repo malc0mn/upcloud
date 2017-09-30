@@ -45,7 +45,7 @@ class Server extends AbstractApi
             return new ServerEntity($server);
         }, $result->servers->server);
 
-        if($indexProperty != null) {
+        if ($indexProperty !== null) {
             return $this->arrayMapKeys($array, $indexProperty);
         }
         return $array;

@@ -29,11 +29,11 @@ final class PricingItem extends AbstractEntity
      *
      * @return float|int
      */
-    function getPricePerMonth(){
+    function getPricePerMonth() {
         return $this->price * 24 * 30;
     }
 
-    function getPriceForAmount($amount){
+    function getPriceForAmount($amount) {
         return ($amount / $this->amount) * $this->price;
     }
 }
