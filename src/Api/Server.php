@@ -35,15 +35,20 @@ class Server extends AbstractApi
      *
      * @return ServerEntity[]
      */
-    public function listServers()
+    public function listServers($indexProperty = null)
     {
         $result = $this->adapter->get(sprintf('%s/server', $this->endpoint));
 
         $result = json_decode($result);
 
-        return array_map(function ($server) {
+        $array = array_map(function ($server) {
             return new ServerEntity($server);
         }, $result->servers->server);
+
+        if($indexProperty != null) {
+            return $this->arrayMapKeys($array, $indexProperty);
+        }
+        return $array;
     }
 
     /**

@@ -21,8 +21,8 @@ class Pricing extends AbstractApi
 
         $result = json_decode($result);
 
-        return array_map(function ($price) {
+        return $this->arrayMapKeys(array_map(function ($price) {
             return new PricingEntity($price);
-        }, $result->prices->zone);
+        }, $result->prices->zone), 'name');
     }
 }
