@@ -17,6 +17,9 @@ class Storage extends AbstractApi
     /**
      * https://www.upcloud.com/api/9-storages/#list-storages
      *
+     * @param null|string $filter Can be one of public|private|normal|backup|
+     *                            cdrom|template|favorite
+     *
      * @return StorageEntity[]
      */
     public function getAll($filter = null)
@@ -239,7 +242,7 @@ class Storage extends AbstractApi
      *
      * @throws HttpException
      *
-     * @return ServerEntity
+     * @return StorageEntity
      */
     public function cloneStorage($uuid, $zone, $title, $tier = 'hdd') {
         $params['storage'] = [
@@ -258,7 +261,7 @@ class Storage extends AbstractApi
      *
      * @throws HttpException
      *
-     * @return ServerEntity
+     * @return StorageEntity
      */
     public function templatize($uuid, $title) {
         $params['storage'] = [
@@ -275,7 +278,7 @@ class Storage extends AbstractApi
      *
      * @throws HttpException
      *
-     * @return ServerEntity
+     * @return StorageEntity
      */
     public function createBackup($uuid, $title) {
         $params['storage'] = [
@@ -334,6 +337,7 @@ class Storage extends AbstractApi
      *
      * @param string $uuid
      * @param string $action
+     * @param array $options
      *
      * @throws HttpException
      *

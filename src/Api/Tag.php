@@ -15,6 +15,8 @@ class Tag extends AbstractApi
     /**
      * https://www.upcloud.com/api/12-tags/#list-existing-tags
      *
+     * @param string $uuid
+     *
      * @return TagEntity[]
      */
     public function getAll($uuid)

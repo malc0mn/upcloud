@@ -22,10 +22,9 @@ final class PricingItem extends AbstractEntity
     public $price;
 
     /**
-     * Return the monthprice based on 30days a month.
+     * Return the monthly price based on 30days a month.
      *
-     * Be carefull, some items this is not the price you pay per month.
-     *
+     * Be careful, some items this is not the price you pay per month.
      *
      * @return float|int
      */

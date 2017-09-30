@@ -33,6 +33,8 @@ class Server extends AbstractApi
     /**
      * https://www.upcloud.com/api/8-servers/#list-servers
      *
+     * @param null|string $indexProperty
+     *
      * @return ServerEntity[]
      */
     public function listServers($indexProperty = null)
@@ -244,6 +246,7 @@ class Server extends AbstractApi
      *
      * @param string $uuid
      * @param string $action
+     * @param array $options
      *
      * @throws HttpException
      *

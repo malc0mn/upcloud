@@ -53,7 +53,7 @@ class Firewall extends AbstractApi
      * https://www.upcloud.com/api/11-firewall/#create-firewall-rule
      *
      * @param string $uuid UUID of the server to create the firewall rule for.
-     * @param string $family IPv4|IPv6 The address family of new IP address
+     * @param string FirewallEntity $rule
      *
      * @return FirewallEntity
      */
