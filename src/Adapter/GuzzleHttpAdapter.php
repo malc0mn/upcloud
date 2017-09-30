@@ -28,17 +28,17 @@ class GuzzleHttpAdapter implements AdapterInterface
      */
     public function __construct($user, $password, ClientInterface $client = null)
     {
-	    $options = [
-		    'auth' => [
-			    $user,
-			    $password,
-			    'basic',
-		    ],
-	    ];
+        $options = [
+            'auth' => [
+                $user,
+                $password,
+                'basic',
+            ],
+        ];
 
-	    $this->client = $client ?: new Client(
-		    class_exists(\GuzzleHttp\Psr7\Response::class) ? $options : ['defaults' => $options]
-	    );
+        $this->client = $client ?: new Client(
+            class_exists(\GuzzleHttp\Psr7\Response::class) ? $options : ['defaults' => $options]
+        );
     }
 
     /**
