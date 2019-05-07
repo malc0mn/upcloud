@@ -2,7 +2,8 @@
 
 namespace UpCloud\Entity;
 
-final class Pricing extends AbstractEntity {
+final class Pricing extends AbstractEntity
+{
     /**
      * @var string
      */
